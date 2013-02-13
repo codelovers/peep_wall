@@ -12,19 +12,26 @@ require.config({
 		},
 		underscore: { // template
 			exports: '_'
-     	}
+		}, dropdown: {
+			deps: [
+				'jquery'
+			]
+		}
 	},
 	paths: {
 		jquery: 'js/lib/jquery/jquery.min.1.9.1',
 		underscore: 'js/lib/underscore/underscore.min.1.4.4',
 		backbone: 'js/lib/backbone/backbone.min.0.9.10',
-		text: 'js/lib/require/text'
+		text: 'js/lib/require/text',
+		dropdown: 'js/lib/twitter_bootstrap/bootstrap-collapse'
 	}
 });
 
 require([
-	'js/routers/router'
-], function(Router) {
+	'js/routers/router',
+	'jquery',
+	'dropdown'
+], function(Router, $, dropdown) {
 	// initialize routing and start Backbone.history()
 	new Router();
 	Backbone.history.start();
