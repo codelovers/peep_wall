@@ -27,7 +27,7 @@ function init(){
 
 app.get('/test', function(req, res) {
         console.log('request GET: /test');
-        res.send(testData);
+        res.send(req.params);
 });
 
 app.get('/test/:id', function(req, res) {
