@@ -3,8 +3,8 @@ define([
 ], function($, _, Backbone, exampleModel) {
 
     var collection = Backbone.Collection.extend({
-        model: exampleModel,          
-        url: ''
+        model: exampleModel,
+        uri: ''
     });
       
     return collection;

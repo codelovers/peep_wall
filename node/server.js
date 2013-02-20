@@ -1,5 +1,6 @@
 var express = require('./node_modules/express');
 var mongoose = require('./node_modules/mongoose');
+var oAuth = require('./node_modules/oauth').OAuth;
 var app = null;
 
 init();
