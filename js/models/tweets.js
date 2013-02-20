@@ -3,7 +3,7 @@ define([
 	'backbone'
 ], function( _, Backbone ) {
 
-	var ExampleModel = Backbone.Model.extend({
+	var TweetsModel = Backbone.Model.extend({
 		// Default key/values
 		defaults: {
 			title: '',
@@ -11,5 +11,5 @@ define([
 		}
 	});
 
-	return ExampleModel;
+	return TweetsModel;
 });
