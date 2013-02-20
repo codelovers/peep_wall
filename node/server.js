@@ -23,6 +23,14 @@ function init(){
 
 };
 
+oa = new oAuth(
+  "http://twitter.com/oauth/request_token",
+  "http://twitter.com/oauth/access_token",
+  'y127hdBETk3KoJrzQdmw', '9zUx9bK9cFbjqh6bSnvNG7J8uDX9YrCS1h8XvLGYY',
+  "1.0A", null, "HMAC-SHA1"
+);
+
+
 // request/response handling
 ///////////////////////////////////////////////////////////
 
@@ -31,10 +39,16 @@ app.get('/test', function(req, res) {
         res.send(req.params);
 });
 
-app.get('/test/:id', function(req, res) {
-        //mongoose.set(req.params.id, req.params.id)
-        console.log('request GET: /test/id' + req.params.id);
-        res.send(req.params.id);
+// app.get('/test/:id', function(req, res) {
+//         //mongoose.set(req.params.id, req.params.id)
+//         console.log('request GET: /test/id' + req.params.id);
+//         res.send(req.params.id);
+// });
+
+app.get('/tweet/:hashtag', function(req, res) {
+      oa.get("https://api.twitter.com/1.1/search/tweets.json?q=%23" + req.params.hashtag + "&count=5", '155494201-Errz5Sd3TQQzeXYnr75RXaymFHFlyIfbTZK3XQwJ', 'SX3thT8nwek6cGAYzgilQ3wnbaYbq6A7yS9EqJlI8Y', function(error, data) {
+        res.send(data);
+      });
 });
 
 app.post('/test', function(req, res) {
@@ -53,7 +67,7 @@ function dbConnector(){
         db.once('open', function callback () {
               console.log('db connection: successfull');
         });
-    
+
 }
 
 
