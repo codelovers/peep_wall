@@ -4,8 +4,9 @@ define([
 	'backbone',
 	'../collections/tweets',
 	'text!js/templates/example_template.html',
-	'text!js/templates/main_navigation.html'
-], function( $, _, Backbone, CollectionTweets, exampleTemplate, mainNavigation, App) {
+	'text!js/templates/main_navigation.html',
+	'text!js/templates/tweet.html'
+], function( $, _, Backbone, CollectionTweets, exampleTemplate, mainNavigationTemplate, tweetTemplate) {
 
 	var AppView = Backbone.View.extend({
 
@@ -17,8 +18,7 @@ define([
 		collectionTweets: '',
 
 		// compile template
-		template: _.template(exampleTemplate),
-		navigation: _.template(mainNavigation),
+		template: _.template(exampleTemplate, { test: 'the Tweets' }),
 
 		// delegated events
 		events: {
@@ -45,15 +45,28 @@ define([
 		},
 
 		getTweets: function(){
+			that = this;
 			this.collectionTweets = new CollectionTweets();
 			this.collectionTweets.fetch({
 				success: function(collection) {
-					console.log(collection.models);
+					var theTweets = collection.models[0].attributes.statuses;
+					that.renderTweets(theTweets);
 				},
                 error: function(){
                     console.log('error');
                 }
 			});
+		},
+
+		renderTweets: function(theTweets) {
+
+			that = this;
+			var test = '';
+			_.each(theTweets, function(value, key){
+				test += _.template(tweetTemplate, { tweet: value.text, author: value.user.name, time: value.user.created_at });
+				console.log(value);
+			});
+			$(this.tweetsWrapper).append(test);
 		}
 
 	});
