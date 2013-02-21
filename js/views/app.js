@@ -49,6 +49,7 @@ define([
 		},
 
 		renderTweets: function(theTweets) {
+			$(this.tweetsWrapper).find('.tweet.new').removeClass('new');
 			that = this;
 			var renderedTweets = '';
 			_.each(theTweets, function(value, key){
@@ -59,7 +60,6 @@ define([
 			}
 			$(this.tweetsWrapper).prepend(renderedTweets);
 			$(this.tweetsWrapper).find('.tweet').show('400');
-
 		}
 
 	});

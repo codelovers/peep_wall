@@ -13,3 +13,20 @@ Stylesheet: Main Stylesheet
 
 @import "bootstrap";
 @import "responsive";
+@import "compass/css3";
+
+#peep {
+    .tweet {
+        display: none;
+        list-style: none;
+        padding: 10px;
+        border-bottom: 1px solid rgba(0,0,0, 0.5);
+        @include single-transition(background-color 0.5s);
+        span:before {
+            content: " – ";
+        }
+    }
+    .new {
+        background-color: rgba(150,150,150, 0.1);
+    }
+}

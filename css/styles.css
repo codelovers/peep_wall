@@ -8292,3 +8292,23 @@ a.label:hover, a.label:focus, a.badge:hover, a.badge:focus {
     overflow: visible !important;
   }
 }
+/* line 19, ../scss/styles.scss */
+#peep .tweet {
+  display: none;
+  list-style: none;
+  padding: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  -webkit-transition: background-color 0.5s 1s;
+  -moz-transition: background-color 0.5s 1s;
+  -ms-transition: background-color 0.5s 1s;
+  -o-transition: background-color 0.5s 1s;
+  transition: background-color 0.5s 1s false;
+}
+/* line 25, ../scss/styles.scss */
+#peep .tweet span:before {
+  content: " – ";
+}
+/* line 29, ../scss/styles.scss */
+#peep .new {
+  background-color: rgba(150, 150, 150, 0.1);
+}
