@@ -71,5 +71,5 @@ define([
 
 	});
 
-	return new AppView;
+	return AppView;
 });

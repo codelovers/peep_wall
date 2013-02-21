@@ -1,8 +1,10 @@
 define([
 	'jquery',
 	'backbone',
-	'js/views/app'
-], function($, Backbone, AppView) {
+	'../views/app'
+], function($, Backbone, appView) {
+
+	var AppView = new appView();
 
 	var Router = Backbone.Router.extend({
 		routes:{
