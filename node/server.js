@@ -36,8 +36,7 @@ function init(){
 ///////////////////////////////////////////////////////////
 
 app.get('/test', function(req, res) {
-    console.log('request GET: /test');
-    res.send(req.params);
+    res.send('dd');
 });
 
 app.get('/test/:id', function(req, res) {
@@ -72,7 +71,7 @@ app.post('/test', function(req, res) {
 // db handling
 ///////////////////////////////////////////////////////////
 function dbConnector(){
-    mongoose.connect('mongodb://localhost/test');
+    mongoose.connect('mongodb://localhost/peep_wall');
 
     var db = mongoose.connection;
         db.on('error', console.error.bind(console, 'connection error:'));
