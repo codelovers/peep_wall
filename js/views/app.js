@@ -27,7 +27,11 @@ define([
 
 		initialize: function() {
 			this.collectionTweets = new CollectionTweets();
+			that = this;
 			this.collectionTweets.getTweets(this);
+			setInterval(function(){
+				that.collectionTweets.getTweets(that);
+			}, 5000);
 		},
 
 		// Re-rendering the App just means refreshing the statistics -- the rest
@@ -45,15 +49,15 @@ define([
 		},
 
 		renderTweets: function(theTweets) {
-
 			that = this;
 			var test = '';
 			_.each(theTweets, function(value, key){
-				time = value.user.created_at;
-				test += _.template(tweetTemplate, { tweet: value.text, author: value.user.name, time: time.substr(0, 19) });
-				console.log(value);
+				time = value.created_at;
+				test += _.template(tweetTemplate, { tweet: value.text, author: value.user.name, time: time });
+				// console.log(value);
 			});
-			$(this.tweetsWrapper).append(test);
+			$(this.tweetsWrapper).prepend(test);
+			$(this.tweetsWrapper).find('.tweet').show('400');
 		}
 
 	});

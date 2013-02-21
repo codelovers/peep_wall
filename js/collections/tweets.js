@@ -3,7 +3,7 @@ define([
 ], function($, _, Backbone, tweetsModel) {
 
     var collection = Backbone.Collection.extend({
-        url: 'http://localhost:3000/tweet/PS4',
+        url: 'http://localhost:3000/tweet/circushalligalli',
 
         getTweets: function(view){
 
@@ -21,7 +21,7 @@ define([
         },
 
         saveTweets: function(){
-            
+
         }
 
     });
