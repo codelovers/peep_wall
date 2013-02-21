@@ -31,7 +31,7 @@ define([
 			this.collectionTweets.getTweets(this);
 			setInterval(function(){
 				that.collectionTweets.getTweets(that);
-			}, 5000);
+			}, 30000);
 		},
 
 		// Re-rendering the App just means refreshing the statistics -- the rest

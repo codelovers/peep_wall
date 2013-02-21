@@ -4,6 +4,7 @@ define([
 ], function( _, Backbone) {
 
 	var tweetsModel = Backbone.Model.extend({
+		url: 'http://localhost:3000/save',
 		// Default key/values
 		defaults: {
 			title: '',
