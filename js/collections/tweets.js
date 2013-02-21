@@ -3,9 +3,29 @@ define([
 ], function($, _, Backbone, tweetsModel) {
 
     var collection = Backbone.Collection.extend({
-        // model: tweetsModel,
-        url: 'http://localhost:3000/tweet/PS4'
+        url: 'http://localhost:3000/tweet/PS4',
+
+        getTweets: function(view){
+
+            this.fetch({
+                success: function(collection) {
+                    console.log('ready');
+                    view.renderTweets(collection.models[0].attributes.statuses);
+
+                },
+                error: function(){
+                    console.log('error - collections/tweets.js');
+                }
+            });
+
+        },
+
+        saveTweets: function(){
+            
+        }
+
     });
+
 
     return collection;
 });

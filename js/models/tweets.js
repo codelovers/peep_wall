@@ -1,13 +1,16 @@
 define([
 	'underscore',
 	'backbone'
-], function( _, Backbone ) {
+], function( _, Backbone) {
 
 	var TweetsModel = Backbone.Model.extend({
 		// Default key/values
 		defaults: {
 			title: '',
-			completed: false
+			author: '',
+			datum: '',
+			max_id: 0,
+			timestamp: ''
 		}
 	});
 
