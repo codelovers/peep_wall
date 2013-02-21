@@ -50,14 +50,17 @@ define([
 
 		renderTweets: function(theTweets) {
 			that = this;
-			var test = '';
+			var renderedTweets = '';
 			_.each(theTweets, function(value, key){
-				time = value.created_at;
-				test += _.template(tweetTemplate, { tweet: value.text, author: value.user.name, time: time });
-				// console.log(value);
+
+				renderedTweets += _.template(tweetTemplate, { tweet: value.attributes.title, author: value.attributes.author, time: value.attributes.date });
+
+				$(this.tweetsWrapper).prepend(renderedTweets);
+				$(this.tweetsWrapper).find('.tweet').show('400');
+
 			});
-			$(this.tweetsWrapper).prepend(test);
-			$(this.tweetsWrapper).find('.tweet').show('400');
+			$(this.tweetsWrapper).append(renderedTweets);
+
 		}
 
 	});
