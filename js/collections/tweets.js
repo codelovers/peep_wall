@@ -4,7 +4,7 @@ define([
 
     var collection = Backbone.Collection.extend({
         model: tweetsModel,
-        url: 'http://localhost:3000/tweet/PS4',
+        url: 'http://localhost:3000/tweet/ps4',
 
 
         parse: function(response){ // manipulate response data
