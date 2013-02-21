@@ -47,12 +47,12 @@ define([
 		renderTweets: function(theTweets) {
 
 			that = this;
-			var test = '';
+			var renderedTweets = '';
 			_.each(theTweets, function(value, key){
-				test += _.template(tweetTemplate, { tweet: value.text, author: value.user.name, time: value.user.created_at });
-				console.log(value);
+				renderedTweets += _.template(tweetTemplate, { tweet: value.attributes.title, author: value.attributes.author, time: value.attributes.date });
+				// console.log(value);
 			});
-			$(this.tweetsWrapper).append(test);
+			$(this.tweetsWrapper).append(renderedTweets);
 		}
 
 	});
