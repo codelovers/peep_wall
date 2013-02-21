@@ -47,12 +47,11 @@ app.get('/test/:id', function(req, res) {
 });
 
 app.get('/tweet/:hashtag', function(req, res) {
-    oa.get("https://api.twitter.com/1.1/search/tweets.json?q=%23" + req.params.hashtag + "&result_type=recent&since_id=" + lastTweetId + "&count=3", '155494201-Errz5Sd3TQQzeXYnr75RXaymFHFlyIfbTZK3XQwJ', 'SX3thT8nwek6cGAYzgilQ3wnbaYbq6A7yS9EqJlI8Y', function(error, data) {
+    oa.get("https://api.twitter.com/1.1/search/tweets.json?q=%23" + req.params.hashtag + "&lang=de&result_type=recent&since_id=" + lastTweetId + "&count=10", '155494201-Errz5Sd3TQQzeXYnr75RXaymFHFlyIfbTZK3XQwJ', 'SX3thT8nwek6cGAYzgilQ3wnbaYbq6A7yS9EqJlI8Y', function(error, data) {
         res.setHeader("Content-Type", "application/json");
         res.send(data);
         var dataAsJson = JSON.parse(data);
         lastTweetId = dataAsJson.search_metadata.max_id_str;
-        console.log(lastTweetId);
     });
 });
 

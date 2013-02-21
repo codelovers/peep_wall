@@ -18,7 +18,7 @@ define([
 		collectionTweets: '',
 
 		// compile template
-		template: _.template(exampleTemplate, { test: 'the Tweets' }),
+		template: _.template(exampleTemplate, { test: '' }),
 
 		// delegated events
 		events: {
@@ -31,7 +31,7 @@ define([
 			this.collectionTweets.getTweets(this);
 			setInterval(function(){
 				that.collectionTweets.getTweets(that);
-			}, 5000);
+			}, 10 * 1000);
 		},
 
 		// Re-rendering the App just means refreshing the statistics -- the rest
@@ -52,11 +52,11 @@ define([
 			that = this;
 			var renderedTweets = '';
 			_.each(theTweets, function(value, key){
-
 				renderedTweets += _.template(tweetTemplate, { tweet: value.attributes.title, author: value.attributes.author, time: value.attributes.date });
-
 			});
-
+			if(renderedTweets !== ''){
+				$('#loader').hide();
+			}
 			$(this.tweetsWrapper).prepend(renderedTweets);
 			$(this.tweetsWrapper).find('.tweet').show('400');
 
