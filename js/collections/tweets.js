@@ -37,7 +37,12 @@ define([
             this.fetch({
                 success: function(collection) {
                     console.log('ready');
+                    
+                    that.saveTweets();
+
+                    // callback to the view                    
                     view.renderTweets(collection.models);
+
 
                 },
                 error: function(){
@@ -48,7 +53,9 @@ define([
         },
 
         saveTweets: function(){
-
+            _.each(this.models, function(value, key){
+                value.save();
+            });
         }
 
     });

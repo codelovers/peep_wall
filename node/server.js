@@ -18,7 +18,7 @@ function init(){
     app.use(express.bodyParser());
     app.all('*', function(req, res, next) {
         res.header("Access-Control-Allow-Origin", "*");
-        res.header("Access-Control-Allow-Methods", "POST, GET");
+        res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS");
         res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
         next();
     });
@@ -53,6 +53,15 @@ app.get('/tweet/:hashtag', function(req, res) {
         var dataAsJson = JSON.parse(data);
         lastTweetId = dataAsJson.search_metadata.max_id_str;
     });
+});
+
+app.post('/save', function(req, res) {
+    console.log(req.body);
+    res.send(JSON.stringify(res.headers));
+});
+
+app.options('/*', function(req, res) {
+    res.send(JSON.stringify(res.headers));
 });
 
 app.post('/test', function(req, res) {
