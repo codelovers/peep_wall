@@ -55,11 +55,10 @@ define([
 
 				renderedTweets += _.template(tweetTemplate, { tweet: value.attributes.title, author: value.attributes.author, time: value.attributes.date });
 
-				$(this.tweetsWrapper).prepend(renderedTweets);
-				$(this.tweetsWrapper).find('.tweet').show('400');
-
 			});
-			$(this.tweetsWrapper).append(renderedTweets);
+
+			$(this.tweetsWrapper).prepend(renderedTweets);
+			$(this.tweetsWrapper).find('.tweet').show('400');
 
 		}
 
