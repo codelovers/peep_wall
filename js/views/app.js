@@ -26,8 +26,8 @@ define([
 		},
 
 		initialize: function() {
-			// is called by initalize the object
-			this.getTweets();
+			this.collectionTweets = new CollectionTweets();
+			this.collectionTweets.getTweets(this);
 		},
 
 		// Re-rendering the App just means refreshing the statistics -- the rest
@@ -42,20 +42,6 @@ define([
 		// helper functions
 		////////////////////////////////////////
 		exampleFunction: function() {
-		},
-
-		getTweets: function(){
-			that = this;
-			this.collectionTweets = new CollectionTweets();
-			this.collectionTweets.fetch({
-				success: function(collection) {
-					var theTweets = collection.models[0].attributes.statuses;
-					that.renderTweets(theTweets);
-				},
-                error: function(){
-                    console.log('error');
-                }
-			});
 		},
 
 		renderTweets: function(theTweets) {
