@@ -63,7 +63,8 @@ define([
 			that = this;
 			var test = '';
 			_.each(theTweets, function(value, key){
-				test += _.template(tweetTemplate, { tweet: value.text, author: value.user.name, time: value.user.created_at });
+				time = value.user.created_at;
+				test += _.template(tweetTemplate, { tweet: value.text, author: value.user.name, time: time.substr(0, 19) });
 				console.log(value);
 			});
 			$(this.tweetsWrapper).append(test);
