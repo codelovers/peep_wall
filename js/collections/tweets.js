@@ -4,7 +4,7 @@ define([
 
     var collection = Backbone.Collection.extend({
         // model: tweetsModel,
-        url: 'http://localhost:3000/tweet/circushalligalli'
+        url: 'http://localhost:3000/tweet/PS4'
     });
 
     return collection;

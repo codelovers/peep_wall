@@ -32,7 +32,9 @@ require([
 	'jquery',
 	'dropdown'
 ], function(Router, $, dropdown) {
+
 	// initialize routing and start Backbone.history()
 	new Router();
 	Backbone.history.start();
+
 });
