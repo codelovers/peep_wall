@@ -37,8 +37,7 @@ function init(){
 ///////////////////////////////////////////////////////////
 
 app.get('/test', function(req, res) {
-    console.log('request GET: /test');
-    res.send(req.params);
+    res.send('dd');
 });
 
 app.get('/test/:id', function(req, res) {
@@ -122,7 +121,6 @@ app.post('/test', function(req, res) {
 // db handling
 ///////////////////////////////////////////////////////////
 function dbConnector(){
-
     mongodb.connect('mongodb://localhost/peep_wall', function(err, db) {
         if(err) throw err;
 
