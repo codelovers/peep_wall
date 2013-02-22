@@ -1,9 +1,10 @@
 var express = require('./node_modules/express');
-var mongoose = require('./node_modules/mongoose');
+var mongodb = require('./node_modules/mongodb').MongoClient;
 var oAuth = require('./node_modules/oauth').OAuth;
 var app = null;
 var oa = null;
 var lastTweetId = 0;
+var collection = {};
 
 init();
 
@@ -46,6 +47,28 @@ app.get('/test/:id', function(req, res) {
     res.send(req.params.id);
 });
 
+app.get('/old_tweets', function(req, res) {
+    var theTweets = [];
+    var allTweets = {
+        'theTweets': theTweets,
+        'old': true
+    };
+    var counter = 0;
+
+    var queryTweets = collection.find().sort( { max_id: -1 } ).stream();
+
+    queryTweets.on("data", function(item) {
+        theTweets.push(item);
+        counter++;
+    });
+
+    queryTweets.on("end", function() {
+        res.setHeader("Content-Type", "application/json");
+        allTweets.count = counter;
+        res.send(allTweets);
+    });
+});
+
 app.get('/tweet/:hashtag', function(req, res) {
     oa.get("https://api.twitter.com/1.1/search/tweets.json?q=%23" + req.params.hashtag + "&lang=en&result_type=recent&since_id=" + lastTweetId + "&count=3", '155494201-Errz5Sd3TQQzeXYnr75RXaymFHFlyIfbTZK3XQwJ', 'SX3thT8nwek6cGAYzgilQ3wnbaYbq6A7yS9EqJlI8Y', function(error, data) {
         res.setHeader("Content-Type", "application/json");
@@ -56,8 +79,35 @@ app.get('/tweet/:hashtag', function(req, res) {
 });
 
 app.post('/save', function(req, res) {
-    console.log(req.body);
-    res.send(JSON.stringify(res.headers));
+    var tweet = {
+        author: req.body.author,
+        title: req.body.title,
+        date: req.body.date,
+        max_id: req.body.max_id,
+        timestamp: req.body.timestamp
+    };
+    collection.insert(tweet, function(err, result) {});
+});
+
+app.get('/all_tweets', function(req, res){
+    var theTweets = [];
+    var allTweets = {
+        'theTweets': theTweets
+    };
+    var counter = 0;
+
+    var queryTweets = collection.find().stream();
+
+    queryTweets.on("data", function(item) {
+        theTweets.push(item);
+        counter++;
+    });
+
+    queryTweets.on("end", function() {
+        res.setHeader("Content-Type", "application/json");
+        allTweets.count = counter;
+        res.send(allTweets);
+    });
 });
 
 app.options('/*', function(req, res) {
@@ -72,17 +122,18 @@ app.post('/test', function(req, res) {
 // db handling
 ///////////////////////////////////////////////////////////
 function dbConnector(){
-    mongoose.connect('mongodb://localhost/test');
 
-    var db = mongoose.connection;
-        db.on('error', console.error.bind(console, 'connection error:'));
-        db.once('open', function callback () {
-            console.log('db connection: successfull');
-        });
+    mongodb.connect('mongodb://localhost/peep_wall', function(err, db) {
+        if(err) throw err;
+
+        console.log("connected");
+        collection = db.collection('tweets');
+
+    });
 
 }
 
 
 // server listen on port X
 ///////////////////////////////////////////////////////////
-app.listen(3000);
+app.listen(3100);
