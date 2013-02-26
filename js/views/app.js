@@ -4,9 +4,8 @@ define([
 	'backbone',
 	'../collections/tweets',
 	'text!js/templates/example_template.html',
-	'text!js/templates/main_navigation.html',
 	'text!js/templates/tweet.html'
-], function( $, _, Backbone, CollectionTweets, exampleTemplate, mainNavigationTemplate, tweetTemplate) {
+], function( $, _, Backbone, CollectionTweets, exampleTemplate, tweetTemplate) {
 
 	var AppView = Backbone.View.extend({
 
@@ -27,11 +26,12 @@ define([
 
 		initialize: function() {
 			this.collectionTweets = new CollectionTweets();
-			var that = this;
 			this.collectionTweets.getTweets(this);
+
+			var that = this;
 			setInterval(function(){
 				that.collectionTweets.getTweets(that);
-			}, 5 * 1000);
+			}, 30 * 1000);
 		},
 
 		// Re-rendering the App just means refreshing the statistics -- the rest
@@ -40,7 +40,7 @@ define([
 			// render function
 
 			$(this.el).html(this.template);
-			$(this.nav).html(this.navigation);
+
 		},
 
 		// helper functions
@@ -60,6 +60,8 @@ define([
 			}
 			$(this.tweetsWrapper).prepend(renderedTweets);
 			$(this.tweetsWrapper).find('.tweet').show('400');
+
+			return renderedTweets;
 		}
 
 	});

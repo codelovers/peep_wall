@@ -12,7 +12,7 @@ require.config({
 		},
 		underscore: { // template
 			exports: '_'
-     	}
+		}
 	},
 	paths: {
 		jquery: 'js/lib/jquery/jquery.min.1.9.1',
@@ -23,10 +23,7 @@ require.config({
 });
 
 require([
-	'js/routers/router',
 	'tests/test'
-], function(Router) {
+], function() {
 	// initialize routing and start Backbone.history()
-	new Router();
-	Backbone.history.start();
 });

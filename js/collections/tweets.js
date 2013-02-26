@@ -6,19 +6,17 @@ define([
     var first = false;
     var collection = Backbone.Collection.extend({
         model: tweetsModel,
-        // url: 'http://localhost:3100/tweet/ps4/first',
         url: function() {
-                return query_url;
+            return query_url;
         },
 
-
         parse: function(response){ // manipulate response data
-
             var newTweet = '';
             var timestamp = '';
             var tweetsModels = [];
 
             if(response.old){
+                //Database
                 _.each(response.theTweets, function(value, key){
                     newTweet = new tweetsModel();
 
@@ -59,17 +57,15 @@ define([
             this.fetch({
                 success: function(collection) {
                     console.log('success - getTweets');
-
-                    if(first){
-                        that.saveTweets();
-                    }
+                    // if(first){
+                    //     that.saveTweets();
+                    // }
 
                     first = true;
-                    query_url = 'http://localhost:3100/tweet/mwc13';
+                    query_url = 'http://localhost:3100/tweet/ps4';
 
                     // callback to the view
                     view.renderTweets(collection.models);
-
                 },
                 error: function(){
                     console.log('error - collections/tweets.js');

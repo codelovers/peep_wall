@@ -2,9 +2,9 @@ define([
 	'jquery',
 	'backbone',
 	'../views/app'
-], function($, Backbone, appView) {
+], function($, Backbone, AppView) {
 
-	var AppView = new appView();
+	var appView = new AppView();
 
 	var Router = Backbone.Router.extend({
 		routes:{
@@ -18,7 +18,7 @@ define([
 
 		defaultAction: function(value) {
 			console.log('routing point - defaultAction');
-			AppView.render();
+			appView.render();
 		}
 
 	});
