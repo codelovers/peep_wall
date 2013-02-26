@@ -78,9 +78,11 @@ define([
         },
 
         saveTweets: function(){
-            _.each(this.models, function(value, key){
-                value.save();
-            });
+            if(!_.isEmpty(this.models)) {
+                _.each(this.models, function(value, key){
+                    value.save();
+                });
+            }
         }
 
     });
