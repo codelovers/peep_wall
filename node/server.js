@@ -85,7 +85,9 @@ app.post('/save', function(req, res) {
         max_id: req.body.max_id,
         timestamp: req.body.timestamp
     };
-    collection.insert(tweet, function(err, result) {});
+    collection.insert(tweet, function(err, result) {
+        res.send(JSON.stringify(res.headers));
+    });
 });
 
 app.get('/all_tweets', function(req, res){

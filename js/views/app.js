@@ -27,7 +27,7 @@ define([
 
 		initialize: function() {
 			this.collectionTweets = new CollectionTweets();
-			that = this;
+			var that = this;
 			this.collectionTweets.getTweets(this);
 			setInterval(function(){
 				that.collectionTweets.getTweets(that);
@@ -50,7 +50,7 @@ define([
 
 		renderTweets: function(theTweets) {
 			$(this.tweetsWrapper).find('.tweet.new').removeClass('new');
-			that = this;
+			var that = this;
 			var renderedTweets = '';
 			_.each(theTweets, function(value, key){
 				renderedTweets += _.template(tweetTemplate, { tweet: value.attributes.title, author: value.attributes.author, time: value.attributes.date });

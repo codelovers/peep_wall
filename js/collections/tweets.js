@@ -55,17 +55,17 @@ define([
         },
 
         getTweets: function(view){
-            that = this;
+            var that = this;
             this.fetch({
                 success: function(collection) {
-                    console.log('ready');
+                    console.log('success - getTweets');
 
                     if(first){
                         that.saveTweets();
                     }
 
                     first = true;
-                    query_url = 'http://localhost:3100/tweet/ps4';
+                    query_url = 'http://localhost:3100/tweet/mwc13';
 
                     // callback to the view
                     view.renderTweets(collection.models);
