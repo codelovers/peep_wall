@@ -12,7 +12,6 @@ define([
         var obj = { counter: 0 };
          _.extend(obj, AppView);
 
-        console.log(obj);
         //equal( obj.testFoo(), 10, "passt");  
         ok( true, "passed!");  
         // equal( actualValue, expectedValue, message )  
