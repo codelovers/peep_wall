@@ -53,6 +53,7 @@ define([
         },
 
         getTweets: function(view){
+
             var that = this;
             this.fetch({
                 success: function(collection) {
@@ -71,6 +72,7 @@ define([
                     console.log('error - collections/tweets.js');
                 }
             });
+
         },
 
         saveTweets: function(){
