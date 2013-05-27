@@ -27,7 +27,7 @@ function init(){
     oa = new oAuth(
         "http://twitter.com/oauth/request_token",
         "http://twitter.com/oauth/access_token",
-        'y127hdBETk3KoJrzQdmw', '9zUx9bK9cFbjqh6bSnvNG7J8uDX9YrCS1h8XvLGYY',
+        '', '', //Auth Keys
         "1.0A", null, "HMAC-SHA1"
     );
 
